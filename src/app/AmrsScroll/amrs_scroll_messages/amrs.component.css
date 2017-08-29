@@ -1,0 +1,37 @@
+virtual-scroll,
+[virtualScroll] {
+  overflow: hidden;
+  overflow-y: auto;
+  border: 1px solid  rgb(209, 218, 223);
+  height: 75vh;
+  display: block;
+}
+    .loader {
+        height: 4em;
+        display:block;
+        line-height:4em;
+        text-align:center;
+        position:relative;
+       background-color:#F6F6F9;
+      }
+      .loader:before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20%;
+        height: 2px;
+        background: #0029FF;
+        animation: loader-animation 2s ease-out infinite;
+      }
+
+      @keyframes loader-animation {
+        0% {
+          transform: translate(0%);
+        }
+        100% {
+          transform: translate(500%);
+        }
+      }
+
+      

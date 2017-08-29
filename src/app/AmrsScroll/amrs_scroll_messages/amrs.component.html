@@ -1,0 +1,54 @@
+<h2>{{title}}</h2>
+
+<div class="status">
+    Showing <span class="badge badge-pill badge-default">{{indices?.start + 1}}</span> - <span class="badge badge-pill badge-default">{{indices?.end}}</span> of <span class="badge badge-pill badge-default">{{scrollItems?.length}}</span>
+    <span>({{scrollItems?.length}} nodes)</span>
+</div>
+
+<virtual-scroll
+[items]="scrollItems" (end)="fetchMore($event)" (update)="buffer = $event" style="height: 75vh; 
+display: block; 
+background-color: #D3D3D3;">
+
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <!-- use scrollItems for testing in the ngfor -->
+    <div *ngFor="let item of scrollItems" >
+  <div class="card card-outline-info mb-1 border-0 "  style="background-color:white">
+      <div class="card-header"  style="background-color:white"> 
+          <div class="row">
+          
+              <div class="col-xs-5 col-sm-5 col-md-5">
+                  <h6 class="card-title">  
+                      <ul class="list-inline">
+                        <li style="color:black">Time : {{item.ts * 1000 | date:'medium'}}</li> 
+                      </ul>
+                    </h6>
+              </div>
+
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <h6 class="card-title">  
+                    <ul class="list-inline">
+                      <li  style="color:black">User :{{item.user }} {{item.username}}</li> 
+                    </ul>
+                  </h6>
+                </div>
+          </div>
+      </div>
+    <div class="card-block">
+        <div class="row"  style="background-color:white">
+          <div  class="col-xs-12 col-sm-12 col-md-12">
+              <p class="card-text"  style="color:black">{{item.text}}</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="card-footer " style="background-color:white">
+          {{item.ts * 1000 | timeAgo }}
+        </div>
+  </div>
+    </div> 
+    <div *ngIf="loading" class="loader">Loading...</div> 
+</div>
+</virtual-scroll>
+
+    
